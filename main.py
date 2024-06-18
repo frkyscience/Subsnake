@@ -1,4 +1,4 @@
-#imports
+# Imports
 from colorama import Fore
 import requests
 import argparse
@@ -7,6 +7,7 @@ import sys
 import os
 from os import path
 
+# ASCII art
 ascii_art = r'''
        ---_ ......._-_--.
       (|\ /      / /| \
@@ -99,17 +100,17 @@ def probe_status_codes(subdomains):
     for subdomain in subdomains:
         try:
             url = f"http://{subdomain}"
-            response = requests.get(url, timeout=5)
-            print(f"{Fore.CYAN}{subdomain} - Status code: {colorize_status_code(response.status_code)} {response.status_code}", end=" | ")
+            response = requests.get(url, timeout=5, verify=True)
+            print(f"{Fore.CYAN}{subdomain} - Status code: {colorize_status_code(response.status_code)} {response.status_code}")
         except requests.exceptions.RequestException as e:
-            print(f"{Fore.CYAN}{subdomain} - Error: {str(e)}", end=" | ")
+            print(f"{Fore.CYAN}{subdomain} - Error: {str(e)}")
 
         try:
             url_https = f"https://{subdomain}"
-            response_https = requests.get(url_https, timeout=5, verify=False)
-            print(f"{Fore.CYAN}{subdomain} (HTTPS) - Status code: {colorize_status_code(response_https.status_code)} {response_https.status_code}", end=" | ")
+            response_https = requests.get(url_https, timeout=5, verify=True)
+            print(f"{Fore.CYAN}{subdomain} (HTTPS) - Status code: {colorize_status_code(response_https.status_code)} {response_https.status_code}")
         except requests.exceptions.RequestException as e:
-            print(f"{Fore.CYAN}{subdomain} (HTTPS) - Error: {str(e)}", end=" | ")
+            print(f"{Fore.CYAN}{subdomain} (HTTPS) - Error: {str(e)}")
 
 def main(domain, save=None, probe=False):
     found_subdomains = query_subdomains(domain)
