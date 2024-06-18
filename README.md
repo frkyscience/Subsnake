@@ -51,4 +51,4 @@ Contributions are welcome! Feel free to open issues and pull requests.
 
 ## License📜
 
-MIT
+[Apache-2.0](./LICENCE)
