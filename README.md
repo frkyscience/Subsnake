@@ -50,5 +50,4 @@ python main.py -s example.com --save results.txt
 Contributions are welcome! Feel free to open issues and pull requests.
 
 ## License📜
-
-[Apache-2.0](./LICENCE)
+Apache-2.0
