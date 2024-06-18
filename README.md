@@ -1,4 +1,4 @@
-# SubDomain Seeker 👀
+# SubbberSnake 🐍👀
 
 SubDomain Seeker is a Python tool for enumerating subdomains associated with a domain. It leverages various techniques and sources to discover hidden subdomains efficiently.🕵️‍♂️
 
