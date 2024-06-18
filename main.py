@@ -32,14 +32,21 @@ ascii_art = r'''
    _______  __/ /_  _________  ____ _/ /_____ 
   / ___/ / / / __ \/ ___/ __ \/ __ `/ //_/ _ \
  (__  ) /_/ / /_/ (__  ) / / / /_/ / ,< /  __/
-/____/\__,_/_.___/____/_/ /_/\__,_/_/|_|\___/ 
+/____/\__,_/_.___/____/_/ /_/\__,_/_/|_|\___/  v0.1
 '''
 
 # Print the ASCII art
 print(Fore.GREEN + ascii_art)
 def query_subdomains(domain):
     """Query for subdomains using a list of predefined subdomains."""
-    subdomains = ["www", "mail", "ftp", "localhost", "webmail", "smtp", "blog", "webdisk", "ns1", "ns2", "cpanel", "whm", "autodiscover"]
+    subdomains = [
+        "www", "mail", "ftp", "localhost", "webmail", "smtp", "blog", "webdisk",
+        "ns1", "ns2", "cpanel", "whm", "autodiscover", "admin", "secure", "vpn",
+        "shop", "api", "test", "dev", "demo", "imap", "pop", "support", "billing",
+        "helpdesk", "login", "portal", "owa", "gateway", "firewall", "proxy",
+        "router", "monitor", "backup", "cache", "cdn", "storage", "db", "database",
+        "staging", "forums", "wiki", "download", "assets", "cdn"
+    ]
     found_subdomains = []
 
     for sub in subdomains:
@@ -81,10 +88,41 @@ def save_to_file(filename, subdomains):
         for subdomain in subdomains:
             file.write(subdomain + "\n")
 
-def main(domain, save=None):
+def colorize_status_code(status_code):
+    """Return colorized status code based on its class."""
+    class_code = status_code // 100  # Get the class of the status code (2, 3, 4, etc.)
+    color_map = {
+        2: Fore.GREEN,   # 2xx codes (Successful)
+        3: Fore.YELLOW,  # 3xx codes (Redirection)
+        4: Fore.RED      # 4xx codes (Client Error)
+    }
+    color = color_map.get(class_code, Fore.RESET)  # Get color from the map, default to reset color
+    return color + str(status_code)
+
+def probe_status_codes(subdomains):
+    """Probe and print HTTP status codes for each subdomain with color coding."""
+    for subdomain in subdomains:
+        try:
+            url = f"http://{subdomain}"
+            response = requests.get(url, timeout=5)
+            print(f"{Fore.CYAN}{subdomain} - Status code: {colorize_status_code(response.status_code)} {response.status_code}")
+        except requests.exceptions.RequestException as e:
+            print(f"{Fore.CYAN}{subdomain} - Error: {str(e)}")
+
+        try:
+            url_https = f"https://{subdomain}"
+            response_https = requests.get(url_https, timeout=5, verify=False)
+            print(f"{Fore.CYAN}{subdomain} (HTTPS) - Status code: {colorize_status_code(response_https.status_code)} {response_https.status_code}")
+        except requests.exceptions.RequestException as e:
+            print(f"{Fore.CYAN}{subdomain} (HTTPS) - Error: {str(e)}")
+
+def main(domain, save=None, probe=False):
     found_subdomains = query_subdomains(domain)
     crtsh_subdomains = query_crtsh(domain)
     all_subdomains = set(found_subdomains + crtsh_subdomains)
+
+    if probe:
+        probe_status_codes(all_subdomains)
 
     for subdomain in all_subdomains:
         print(subdomain)
@@ -102,6 +140,7 @@ if __name__ == "__main__":
                                      formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument("-s", required=True, help="Domain to enumerate subdomains for")
     parser.add_argument("--save", help="File to save the subdomains to (optional)")
+    parser.add_argument("-pc", action="store_true", help="Probe subdomains for HTTP status codes")
     args = parser.parse_args()
 
-    main(args.s, args.save)
+    main(args.s, args.save, args.pc)
