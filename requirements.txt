@@ -1,0 +1,6 @@
+colorama
+requests
+argparse
+dnspython
+flake8
+pytest
