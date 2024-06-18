@@ -13,22 +13,36 @@ SubDomain Seeker is a Python tool for enumerating subdomains associated with a d
 ### Installation🔧
 
 1. Clone the repository:
+```sh
 git clone (https://github.com/frkyscience/Subbersnake)
 cd Subbersnake
+```
+2. Install dependencies
+```sh
+pip install -r requirements.txt
+```
 
-2. run with Subbersnake.py 
+3. Run with Subbersnake.py 
+```sh
+# Windows
+python main.py
 
+# Linux / Mac
+python3 main.py
+```
 
 ### Running the Program🏃
 
 To enumerate subdomains without saving to a file:
-python Subbersnake.py -s example.com
-
+```sh
+python main.py -s example.com
+```
 
 
 To enumerate subdomains and save the results to a file:
-python Subbersnake.py -s example.com --save results.txt
-
+```sh
+python main.py -s example.com --save results.txt
+```
 
 ### Options⚙️
 - `-h`: Option to list all the possibile commands in the program.
@@ -41,4 +55,4 @@ Contributions are welcome! Feel free to open issues and pull requests.
 
 ## License📜
 
-MiT
+MIT
