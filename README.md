@@ -24,11 +24,7 @@ pip install -r requirements.txt
 
 3. Run with Subbersnake.py 
 ```sh
-# Windows
 python main.py
-
-# Linux / Mac
-python3 main.py
 ```
 
 ### Running the Program🏃
