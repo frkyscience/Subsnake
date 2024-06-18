@@ -1,13 +1,33 @@
+
 #imports
+from colorama import init, Fore, Back ,Style
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+ascii_art = r'''
+       ---_ ......._-_--.
+      (|\ /      / /| \
+      /  /     .'  -=-'   `.
+     /  /    .'             )
+   _/  /   .'        _.)   /
+  / o   o        _.-' /  .'
+  \          _.-'    / .'*|
+   \______.-'//    .'.' \*|
+    \|  \ | //   .'.' _ |*|
+     `   \|//  .'.'_ _ _|*|
+      .  .// .'.' | _ _ \*|
+      \`-|\_/ /    \ _ _ \*\
+       `/'\__/      \ _ _ \*\
+      /^|            \ _ _ \*
+     '  `             \ _ _ \
+               __                     __      
+   _______  __/ /_  _________  ____ _/ /_____ 
+  / ___/ / / / __ \/ ___/ __ \/ __ `/ //_/ _ \
+ (__  ) /_/ / /_/ (__  ) / / / /_/ / ,< /  __/
+/____/\__,_/_.___/____/_/ /_/\__,_/_/|_|\___/ 
+                                              
 
+'''
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# Print the ASCII art
+init()
+print(Fore.GREEN + ascii_art)
