@@ -4,3 +4,4 @@ argparse
 dnspython
 flake8
 pytest
+python-nmap

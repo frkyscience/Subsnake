@@ -1,4 +1,3 @@
-# Imports
 from colorama import Fore
 import requests
 import argparse
@@ -6,6 +5,7 @@ from dns import resolver
 import sys
 import os
 from os import path
+import nmap
 
 # ASCII art
 ascii_art = r'''
@@ -112,13 +112,27 @@ def probe_status_codes(subdomains):
         except requests.exceptions.RequestException as e:
             print(f"{Fore.CYAN}{subdomain} (HTTPS) - Error: {str(e)}")
 
-def main(domain, save=None, probe=False):
+def run_nmap(subdomains):
+    """Run an Nmap scan on the found subdomains."""
+    nm = nmap.PortScanner()
+    for subdomain in subdomains:
+        print(Fore.GREEN + f"Running Nmap scan on {subdomain}")
+        try:
+            result = nm.scan(subdomain, arguments='-sV')
+            print(Fore.YELLOW + result['nmap']['scanstats']['summary'])
+        except Exception as e:
+            print(Fore.RED + f"Error running Nmap on {subdomain}: {str(e)}")
+
+def main(domain, save=None, probe=False, nmap_scan=False):
     found_subdomains = query_subdomains(domain)
     crtsh_subdomains = query_crtsh(domain)
     all_subdomains = set(found_subdomains + crtsh_subdomains)
 
     if probe:
         probe_status_codes(all_subdomains)
+
+    if nmap_scan:
+        run_nmap(all_subdomains)
 
     for subdomain in all_subdomains:
         print(subdomain)
@@ -137,6 +151,7 @@ if __name__ == "__main__":
     parser.add_argument("-s", required=True, help="Domain to enumerate subdomains for")
     parser.add_argument("--save", help="File to save the subdomains to (optional)")
     parser.add_argument("-pc", action="store_true", help="Probe subdomains for HTTP status codes")
+    parser.add_argument("-nmap", action="store_true", help="Run Nmap scan on found subdomains")
     args = parser.parse_args()
 
-    main(args.s, args.save, args.pc)
+    main(args.s, args.save, args.pc, args.nmap)
