@@ -34,6 +34,8 @@ python Subbersnake.py -s example.com --save results.txt
 - `-h`: Option to list all the possibile commands in the program.
 - `-s`: Specify the domain to enumerate subdomains for.
 - `--save`: Optional parameter to save the subdomains to a file.
+-  `-pc`: Probe and print HTTP status codes for each subdomain
+
 
 ## Contributing🤝
 
