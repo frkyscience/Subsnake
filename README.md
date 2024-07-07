@@ -1,4 +1,4 @@
-# SubSnake 🐍👀 | Now also CXreating a GUI Version -> [SubSnake GUI](https://github.com/frkyscience/SubSnakeGUI)
+# SubSnake 🐍👀 | GUI Version -> [SubSnake GUI](https://github.com/frkyscience/SubSnakeGUI)  WIP!!!
 
 SubDomain Seeker is a Python tool for enumerating subdomains associated with a domain. It leverages various techniques and sources to discover hidden subdomains efficiently.🕵️‍♂️
 
