@@ -146,7 +146,7 @@ def main(domain, save=None, probe=False, nmap_scan=False):
             sys.exit(1)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="SubHunter: The Ultimate Subdomain Enumeration Tool | Security Toolbox",
+    parser = argparse.ArgumentParser(description="SubHunter: The Ultimate Subdomain Enumeration Tool | Sce",
                                      formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument("-s", required=True, help="Domain to enumerate subdomains for")
     parser.add_argument("--save", help="File to save the subdomains to (optional)")
