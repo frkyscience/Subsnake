@@ -27,7 +27,7 @@ ascii_art = r'''
    _______  __/ /_  _________  ____ _/ /_____
   / ___/ / / / __ \/ ___/ __ \/ __ / //_/ _ \
  (__  ) /_/ / /_/ (__  ) / / / /_/ / ,< /  __/
-/____/\__,_/_.___/____/_/ /_/\__,_/_/|_|\___/  v0.2 by Jb
+/____/\__,_/_.___/____/_/ /_/\__,_/_/|_|\___/  v0.3 by Jb
 '''
 
 # Print the ASCII art
@@ -139,7 +139,7 @@ def main(domain, save=None, probe=False):
             sys.exit(1)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="SubHunter: The Ultimate Subdomain Enumeration Tool",
+    parser = argparse.ArgumentParser(description="Subsnake: The Ultimate Subdomain Enumeration Tool",
                                      formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument("-s", required=True, help="Domain to enumerate subdomains for")
     parser.add_argument("--save", help="File to save the subdomains to (optional)")
