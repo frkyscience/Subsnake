@@ -96,12 +96,15 @@ def colorize_status_code(status_code):
     return color + str(status_code)
 
 def probe_status_codes(subdomains):
-    """Probe and print HTTP status codes for each subdomain with color coding."""
+    """Probe and print HTTP status codes and headers for each subdomain with color coding."""
     for subdomain in subdomains:
         try:
             url = f"http://{subdomain}"
             response = requests.get(url, timeout=5, verify=True)
             print(f"{Fore.CYAN}{subdomain} - Status code: {colorize_status_code(response.status_code)} {response.status_code}")
+            print(Fore.WHITE + "HTTP Headers:")
+            for header, value in response.headers.items():
+                print(f"  {header}: {value}")
         except requests.exceptions.RequestException as e:
             print(f"{Fore.CYAN}{subdomain} - Error: {str(e)}")
 
@@ -109,8 +112,12 @@ def probe_status_codes(subdomains):
             url_https = f"https://{subdomain}"
             response_https = requests.get(url_https, timeout=5, verify=True)
             print(f"{Fore.CYAN}{subdomain} (HTTPS) - Status code: {colorize_status_code(response_https.status_code)} {response_https.status_code}")
+            print(Fore.WHITE + "HTTPS Headers:")
+            for header, value in response_https.headers.items():
+                print(f"  {header}: {value}")
         except requests.exceptions.RequestException as e:
             print(f"{Fore.CYAN}{subdomain} (HTTPS) - Error: {str(e)}")
+
 
 def main(domain, save=None, probe=False):
     found_subdomains = query_subdomains(domain)
