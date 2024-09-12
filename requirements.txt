@@ -5,3 +5,5 @@ dnspython
 flake8
 pytest
 python-nmap
+socket
+ThreadPoolExecutor
