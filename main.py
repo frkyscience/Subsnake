@@ -43,7 +43,7 @@ def query_subdomains(domain):
         "shop", "api", "test", "dev", "demo", "imap", "pop", "support", "billing",
         "helpdesk", "login", "portal", "owa", "gateway", "firewall", "proxy",
         "router", "monitor", "backup", "cache", "cdn", "storage", "db", "database",
-        "staging", "forums", "wiki", "download", "assets", "cdn", "en"
+        "staging", "forums", "wiki", "download", "assets", "cdn", "en", "app", "cashier"
     ]
     found_subdomains = []
 
