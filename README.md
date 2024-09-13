@@ -24,13 +24,16 @@ cd Subbersnake
 ### Running the Program🏃
 
 To enumerate subdomains without saving to a file:
-python Subbersnake.py -s example.com
+python Subsnake.py -s example.com
 
 
 
 To enumerate subdomains and save the results to a file:
-python Subbersnake.py -s example.com --save results.txt
+python Subsnake.py -s example.com --save results.txt
 
+Example of a pipeline 
+python Subnake.py -pc -ipp -s example.com
+![Schermafbeelding 2024-09-13 065422](https://github.com/user-attachments/assets/f93e3fe6-7f78-4c74-911a-9e2b57af7983)
 
 ### Options⚙️
 - `-h`: Option to list all the possibile commands in the program.
