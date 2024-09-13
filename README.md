@@ -10,15 +10,16 @@ SubDomain Seeker is a Python tool for enumerating subdomains associated with a d
 - Save results to a file for further analysis.
 - Support for multiple subdomain discovery techniques.
 - Fast and reliable subdomain enumeration.
-
+- Find IP adresses
+- Find header response and open ports
 
 ### Installation🔧
 
 1. Clone the repository:
 git clone (https://github.com/frkyscience/Subbersnake)
-cd Subbersnake
+cd Subsnake
 
-2. run with Subbersnake.py 
+2. run with python Subsnake.py 
 
 
 ### Running the Program🏃
@@ -40,6 +41,7 @@ python Subnake.py -pc -ipp -s example.com
 - `-s`: Specify the domain to enumerate subdomains for.
 - `--save`: Optional parameter to save the subdomains to a file.
 -  `-pc`: Probe and print HTTP status codes for each subdomain
+-  `-ipp`: Probe and print IP adresss for each subdomain
 
 ## Contributing🤝
 
